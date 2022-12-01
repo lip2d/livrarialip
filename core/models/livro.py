@@ -4,8 +4,18 @@ from .editora import Editora
 from .autor import Autor
 from .categoria import Categoria
 
+from uploader.models import Image
+
 
 class Livro(models.Model):
+    capa = models.ForeignKey(
+        Image,
+        related_name="+",
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        default=None,
+    )
     titulo = models.CharField(max_length=255)
     isbn = models.CharField(max_length=32, null=True, blank=True)
     quantidade = models.IntegerField()
